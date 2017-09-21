@@ -1,2 +1,6 @@
 target/
 .settings
+.idea/
+RemoteSystemTempFiles
+Servers/
+.metadata
