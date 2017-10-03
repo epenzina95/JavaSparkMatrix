@@ -7,7 +7,8 @@ import org.springframework.boot.web.support.SpringBootServletInitializer;
 
 @SpringBootApplication
 public class SpringBootWebApplication extends SpringBootServletInitializer {
-
+	//для запуска на порту отличном от 8080
+	//mvn spring-boot:run -Drun.jvmArguments='-Dserver.port=8081'
 	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
 		return application.sources(SpringBootWebApplication.class);
