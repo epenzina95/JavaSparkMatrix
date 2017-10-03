@@ -17,4 +17,17 @@ public class Calculation {
 		
 		return result;
 	}
+
+	public static CalculationResponse calcThirdFunction(Integer iterations, Double alpha, Double fi) {
+		CalculationResponse result = new CalculationResponse();
+
+		try {
+			// TODO
+		} catch(Exception e) {
+			result.getErrors().add(e.getMessage());
+			e.printStackTrace();
+		}
+
+		return result;
+	}
 }

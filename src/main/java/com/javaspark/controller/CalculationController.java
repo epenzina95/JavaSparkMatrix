@@ -33,6 +33,7 @@ public class CalculationController {
 				break;
 			case 3: 
 				// Настина функция
+				result = Calculation.calcThirdFunction(iterations, alpha, fi);
 				break;
 			default: 
 				result.getErrors().add("Ошибка: неверный тип функции");
