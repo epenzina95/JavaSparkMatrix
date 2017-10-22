@@ -11,6 +11,25 @@ h2{
 	margin-bottom: 3px;
 }
 
-body {
+html, body {
+	min-height: 100%;
+	height: 100%;
+	width: 100%;
+	margin: auto;
+	/* background-size: contain; */
+	overflow-y: auto;
+	overflow: auto;
 	background-color: #ffffff;
+}
+
+.container {
+	margin: 0 auto;
+    min-height: 80%;
+}
+
+.loading {
+	margin-left: 50%;
+	margin-right: auto;
+	margin-top: 20%;
+	margin-bottom: auto;
 }

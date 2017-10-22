@@ -7,7 +7,7 @@ angular.module('sparkCalc').controller('CalcFunctionController', ['$scope', 'Cal
     self.iterations = null;
     self.alpha = null;
     self.gamma = null;
-    //self.response={errors:[], data: {}};
+    self.isLoading = false;
     self.response={};
  
     self.submit = submit;
@@ -19,6 +19,7 @@ angular.module('sparkCalc').controller('CalcFunctionController', ['$scope', 'Cal
     	function(d) {
             console.log('Function execution complete');
     		self.response = d;
+    		self.isLoading = false;
     		if (self.response.errors != null) {
     			for (var i = 0; i < self.response.errors.length; i++)
     				console.log('Ошибка вычисления функции: ' + self.response.errors[i]);
@@ -27,19 +28,11 @@ angular.module('sparkCalc').controller('CalcFunctionController', ['$scope', 'Cal
     	);
     }
     
-    function checkEmptyData() {
-    	return Object.keys(self.response.data).length; 
-    	//return self.response.data.idEmpty();
-    }
-    
     function submit() {
         console.log('Start getting function result');
-        /*if (self.functionNum == 2 && !self.fi) {
-    		self.response.errors.push("Не все поля заполнены");
-    		return;
-    	}*/
         getFunctionResult();
         reset();
+        self.isLoading = true;
     }
  
     function reset(){
@@ -47,9 +40,8 @@ angular.module('sparkCalc').controller('CalcFunctionController', ['$scope', 'Cal
         self.iterations = null;
         self.alpha = null;
         self.gamma = null;
-        //self.response = {errors:[], data: {}};
+        self.isLoading = false;
         self.response = {};
-        //$scope.myForm.$setPristine(); //reset Form
     }
  
 }]);
