@@ -1,7 +1,16 @@
 h1{
 	color:#0000FF;
+	margin-bottom: 5%;
 }
 
 h2{
 	color:#FF0000;
+}
+
+.textDescription {
+	margin-bottom: 3px;
+}
+
+body {
+	background-color: #ffffff;
 }

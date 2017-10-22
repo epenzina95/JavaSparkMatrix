@@ -1,3 +1,3 @@
 'use strict';
  
-var App = angular.module('sparkCalc',[]);
+var App = angular.module('sparkCalc', ['ngMaterial']);

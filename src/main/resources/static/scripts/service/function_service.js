@@ -10,10 +10,10 @@ angular.module('sparkCalc').factory('CalcFunctionService', ['$http', '$q', funct
  
     return factory;
  
-    function getFunctionResult(functionNum, iterations, alpha, fi) {
+    function getFunctionResult(functionNum, iterations, alpha, gamma) {
         var deferred = $q.defer();
         $http.get(REST_SERVICE_URI + "?functionNum=" + functionNum + "&iterations=" + iterations + 
-        		(alpha ? ("&alpha=" + alpha) : "") + (fi ? "&fi="+ fi : ""))
+        		(alpha ? ("&alpha=" + alpha) : "") + (gamma ? "&gamma="+ gamma : ""))
             .then(
             function (response) {
                 deferred.resolve(response.data);
