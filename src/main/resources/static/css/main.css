@@ -30,7 +30,7 @@ html, body {
 .loading {
 	margin-left: 50%;
 	margin-right: auto;
-	margin-top: 20%;
+	margin-top: 10%;
 	margin-bottom: auto;
 }
 
@@ -53,8 +53,8 @@ html, body {
 .dialogdemoBasicUsage div#status {
   color: #c60008; }
 
-md-toolbar {
-	color: #222222;
+.md-toolbar-tools {
+	background-color: #222222;
 }
 md-toolbar, h2 {
 	color:#ffffff;

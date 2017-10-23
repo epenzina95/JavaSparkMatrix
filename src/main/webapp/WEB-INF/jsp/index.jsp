@@ -132,7 +132,7 @@
 	<script type="text/ng-template" id="tabDialog.html">
 <md-dialog>
   <form>
-    <md-toolbar>
+    <md-toolbar aria-label="Справка">
       <div class="md-toolbar-tools">
         <h2>Справка</h2>
         <span flex></span>
@@ -148,7 +148,8 @@
           <md-content class="md-padding">
             <h1 class="md-display-2">О программе</h1>
             <p>Дизайн поправить надо, конечно.</p>
-            <p>Кто-нибудь может выпилить этот темплейт из index.jsp? У меня чет ничегоне выходит. Я днище.</p>
+            <p>Кто-нибудь может выпилить этот темплейт из index.jsp? У меня чет ничего не выходит. Я днище.</p>
+            <p>Еще по какой-то причине непонятной получается так, что при загрузке диалогового окна на нем отображается только две вкладки, а если потом открыть/закрыть консольку, появляется и третья. Кто-нить может посмотреть, почему так происходит?</p>
             <p>А вообще здесь можно было бы вывести задание, например, наверное.</p>
             <p>Типа, в приложении производится вычисление функций Якоби с использованием фреймворка Apache Spark для распараллеливания процесса обработки данных.</p>
             <p>Ну и типа работу выполнили:</p>
@@ -171,9 +172,6 @@
     </md-dialog-content>
 
     <md-dialog-actions layout="row">
-      //<md-button href="http://en.wikipedia.org/wiki/Mango" target="_blank" md-autofocus>
-      //  More on Wikipedia (не надо)
-      //</md-button>
       <span flex></span>
       <md-button ng-click="answer('OK')" style="margin-right:20px;" >
         OK
