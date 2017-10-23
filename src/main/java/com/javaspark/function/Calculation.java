@@ -28,7 +28,7 @@ public class Calculation {
 				}
 			}).reduce((a, b) -> a + b);
 			
-			response.getData().put("FistFunctionRes", res); // вообще тут должны бы быть точки для графика.
+			response.getData().put("FirstFunctionRes", res); // вообще тут должны бы быть точки для графика.
 			
 		} catch(Exception e) {
 			response.getErrors().add(e.getMessage());

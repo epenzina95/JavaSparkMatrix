@@ -6,9 +6,9 @@
 <head>
 
 <link rel="stylesheet" type="text/css" href="webjars/bootstrap/3.3.7/css/bootstrap.min.css" />
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
 <c:url value="/css/main.css" var="jstlCss" />
 <link href="${jstlCss}" rel="stylesheet" />
-
 </head>
 <body ng-app="sparkCalc" class="ng-cloak">
 
@@ -128,6 +128,60 @@
 	<script src="<c:url value='/scripts/app.js' />"></script>
     <script src="<c:url value='/scripts/service/function_service.js' />"></script>
     <script src="<c:url value='/scripts/controller/function_controller.js' />"></script>
+    <script src="<c:url value='/scripts/controller/dialog_controller.js' />"></script>
+	<script type="text/ng-template" id="tabDialog.html">
+<md-dialog>
+  <form>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Справка</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <!-- <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Закрыть диалог"></md-icon> -->
+          <span class="glyphicon glyphicon-remove-sign"></span>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-dialog-content style="max-width:800px;max-height:810px; ">
+      <md-tabs md-dynamic-height md-border-bottom>
+        <md-tab label="О программе">
+          <md-content class="md-padding">
+            <h1 class="md-display-2">О программе</h1>
+            <p>Дизайн поправить надо, конечно.</p>
+            <p>Кто-нибудь может выпилить этот темплейт из index.jsp? У меня чет ничегоне выходит. Я днище.</p>
+            <p>А вообще здесь можно было бы вывести задание, например, наверное.</p>
+            <p>Типа, в приложении производится вычисление функций Якоби с использованием фреймворка Apache Spark для распараллеливания процесса обработки данных.</p>
+            <p>Ну и типа работу выполнили:</p>
+          </md-content>
+        </md-tab>
+        <md-tab label="Данные">
+          <md-content class="md-padding">
+            <h1 class="md-display-2">Данные</h1>
+            <p>В приложении считается то-то, то-то. Вот у нас тут три типа функций. Еще всякие параметры. Их ввести надо, и все будет хорошо.</p>
+            <p>Вот тут итерации - сомнительная переменная, но в формуле вроде как присутствует; альфа, гамма - это вообще просто параметры; Еще есть c и тау, но c всегда равно двум, а тау вроде как считать тоже надо.</p>
+          </md-content>
+        </md-tab>
+        <md-tab label="Графики">
+          <md-content class="md-padding">
+            <h1 class="md-display-2">Графики</h1>
+            <p>В приложении выводятся графики нагрузки. Они должны быть красивые, а может и не очень красивые. Кто их знает?</p>
+          </md-content>
+        </md-tab>
+      </md-tabs>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row">
+      //<md-button href="http://en.wikipedia.org/wiki/Mango" target="_blank" md-autofocus>
+      //  More on Wikipedia (не надо)
+      //</md-button>
+      <span flex></span>
+      <md-button ng-click="answer('OK')" style="margin-right:20px;" >
+        OK
+      </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>
+	</script>
 </body>
 
 </html>
