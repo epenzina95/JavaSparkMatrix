@@ -4,7 +4,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <html lang="ru">
 <head>
-
+<title>Java Spark Calculations</title>
 <link rel="stylesheet" type="text/css" href="webjars/bootstrap/3.3.7/css/bootstrap.min.css" />
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
 <c:url value="/css/main.css" var="jstlCss" />
@@ -18,7 +18,7 @@
 	<div class="container">
 
 		<div class="row starter-template">
-			<div class="col-md-12">
+			<div class="col-md-12" style="text-align: center;">
 				<h1>Вычисление функций с помощью фреймворка Apache Spark</h1>
 			</div>
 		</div>
@@ -51,7 +51,7 @@
 					<div class="row">
 						<div class="form-group col-md-12">
 							<label class="col-md-2 control-lable" for="funcNum">Тип функции</label>
-							<div class="col-md-7">
+							<div class="col-md-8">
 								<select class="form-control" name="multipleSelect" id="funcNum" ng-model="ctrl.functionNum" required>
 							      <option value="1">Аналитическая функция</option>
 							      <option value="2">Интегральная функция</option>
@@ -61,33 +61,36 @@
 				                	<span ng-show="myForm.funcNum.$error.required">Это поле является обязательным</span>
 									<span ng-show="myForm.funcNum.$invalid">Ошибка в заполнении поля</span>
 								</div>
-				               <!--  <input type="number"  class="form-control input-sm" id="funcNum" ng-model="ctrl.functionNum" required />
-				                <div class="has-error" ng-show="myForm.$dirty">
-				                	<span ng-show="myForm.funcNum.$error.required">Это поле является обязательным</span>
-									<span ng-show="myForm.funcNum.$invalid">Ошибка в заполнении поля</span>
-								</div> -->
 							</div>
 						</div>
 					</div>
 		
 					<div class="row">
 						<div class="form-group col-md-12">
-			            	<label class="col-md-2 control-lable" for="iterations">Количество итераций</label>
-			                <div class="col-md-7">
-				                <input type="number" ng-model="ctrl.iterations" id="iterations" class="form-control input-sm" required ng-maxlength="6" required />
-				                <div class="has-error" ng-show="myForm.$dirty">
-				                	<span ng-show="myForm.iterations.$error.required">Это поле является обязательным</span>
-				                	<span ng-show="myForm.iterations.$error.maxlength">Превышен максимальный допустимый порог</span>
-									<span ng-show="myForm.iterations.$invalid">Ошибка в заполнении поля</span>
+			            	<label class="col-md-2 control-lable" for="k">Размерность матрицы</label>
+				            <div class="col-md-4">
+					            <input type="number" ng-model="ctrl.n" id="n" placeholder="Строки" class="form-control input-sm" required ng-maxlength="6" required />
+					            <div class="has-error" ng-show="myForm.$dirty">
+					              	<span ng-show="myForm.n.$error.required">Это поле является обязательным</span>
+					               	<span ng-show="myForm.n.$error.maxlength">Превышен максимальный допустимый порог</span>
+									<span ng-show="myForm.n.$invalid">Ошибка в заполнении поля</span>
 								</div>
-				            </div>
+					        </div>
+				            <div class="col-md-4">
+					            <input type="number" ng-model="ctrl.k" id="k" placeholder="Столбцы" class="form-control input-sm" required ng-maxlength="6" required />
+					            <div class="has-error" ng-show="myForm.$dirty">
+					               	<span ng-show="myForm.k.$error.required">Это поле является обязательным</span>
+					               	<span ng-show="myForm.k.$error.maxlength">Превышен максимальный допустимый порог</span>
+									<span ng-show="myForm.k.$invalid">Ошибка в заполнении поля</span>
+								</div>
+					        </div>
 						 </div>
 					</div>
 		 
 					<div class="row">
 						<div class="form-group col-md-12">
-		                	<label class="col-md-2 control-lable" for="alpha">Alpha</label>
-		                    <div class="col-md-7">
+		                	<label class="col-md-2 control-lable" for="alpha">&alpha;</label>
+		                    <div class="col-md-8">
 		                    	<input type="number"  step="0.00001" ng-model="ctrl.alpha" id="alpha" class="form-control input-sm" required/>
 		                    	<div class="has-error" ng-show="myForm.$dirty">
 				                	<span ng-show="myForm.alpha.$error.required">Это поле является обязательным</span>
@@ -99,8 +102,8 @@
 		 
 					<div class="row">
 						<div class="form-group col-md-12">
-		                	<label class="col-md-2 control-lable" for="gamma">Gamma</label>
-		                    <div class="col-md-7">
+		                	<label class="col-md-2 control-lable" for="gamma">&gamma;</label>
+		                    <div class="col-md-8">
 		                    	<input type="number" step="0.00001" ng-model="ctrl.gamma" id="gamma" class="form-control input-sm"/>
 							</div>
 						</div>
@@ -168,6 +171,7 @@
             <p>В приложении выводятся графики нагрузки. Они должны быть красивые, а может и не очень красивые. Кто их знает?</p>
           </md-content>
         </md-tab>
+        <md-tab></md-tab>
       </md-tabs>
     </md-dialog-content>
 

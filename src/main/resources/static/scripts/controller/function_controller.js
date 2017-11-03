@@ -4,7 +4,8 @@ angular.module('sparkCalc').controller('CalcFunctionController', ['$scope', 'Cal
     var self = this;
     
     self.functionNum = null;
-    self.iterations = null;
+    self.k = null;
+    self.n = null;
     self.alpha = null;
     self.gamma = null;
     self.isLoading = false;
@@ -14,7 +15,7 @@ angular.module('sparkCalc').controller('CalcFunctionController', ['$scope', 'Cal
     self.reset = reset;
     
     function getFunctionResult() {
-    	CalcFunctionService.getFunctionResult(self.functionNum, self.iterations, self.alpha, self.gamma)
+    	CalcFunctionService.getFunctionResult(self.functionNum, self.k, self.n, self.alpha, self.gamma)
     	.then(
     	function(d) {
             console.log('Function execution complete');
@@ -30,6 +31,20 @@ angular.module('sparkCalc').controller('CalcFunctionController', ['$scope', 'Cal
     
     function submit() {
         console.log('Start getting function result');
+        
+        if (self.gamma > 1 || self.gamma < 0) {
+        	self.response.errors = [];
+        	self.response.errors.push('Неверное значение параметра: |&gamma;| <= 1');
+        	return;
+        }
+        if (self.n <= 0 || self.k <= 0) {
+        	if (self.response.errors) self.response.errors.push('Неверное значение параметра: количество строк и столбцов должно быть положительным');
+        	else {
+            	self.response.errors = [];
+            	self.response.errors.push('Неверное значение параметра: количество строк и столбцов должно быть положительным');
+        	}
+        	return;
+        }
         getFunctionResult();
         reset();
         self.isLoading = true;
@@ -37,7 +52,8 @@ angular.module('sparkCalc').controller('CalcFunctionController', ['$scope', 'Cal
  
     function reset(){
     	self.functionNum = null;
-        self.iterations = null;
+        self.k = null;
+        self.n = null;
         self.alpha = null;
         self.gamma = null;
         self.isLoading = false;

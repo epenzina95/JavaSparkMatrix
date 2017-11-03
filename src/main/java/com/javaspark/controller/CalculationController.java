@@ -10,8 +10,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.javaspark.function.AnalyticFunction;
 import com.javaspark.function.Calculation;
 import com.javaspark.function.CalculationResponse;
+import com.javaspark.function.IntegralFunction;
+import com.javaspark.function.JavaSparkFunction;
+import com.javaspark.function.RecurrenceFunction;
 
 @RestController
 public class CalculationController {
@@ -34,13 +38,15 @@ public class CalculationController {
 	}
 	
 	@RequestMapping(value = CALCULATE_FUNCTION, method = RequestMethod.GET)
-	public @ResponseBody Object getODHEntitiesgammalteredByIds(
+	public @ResponseBody Object calculateFunction(
 			@RequestParam(value = "functionNum", required = true) Integer functionNum,
-			@RequestParam(value = "iterations", required = true) Integer iterations,
+			@RequestParam(value = "k", required = true) Integer k,
+			@RequestParam(value = "n", required = true) Integer n,
 			@RequestParam(value = "alpha", required = false) Double alpha,
 			@RequestParam(value = "gamma", required = false) Double gamma) {
 		
 		CalculationResponse result = new CalculationResponse();
+		JavaSparkFunction func = null;
 		
 		try { 
 			
@@ -53,13 +59,19 @@ public class CalculationController {
 			
 			switch(functionNum) {
 			case 1: 
-				result = Calculation.calcFirstFunction(sc, iterations, alpha, gamma);
+				func = new AnalyticFunction(alpha, gamma);
+				result = func.calcFunction(sc, k, n);
+				//result = Calculation.calcFirstFunction(sc, k, n, alpha, gamma);
 				break;
 			case 2: 
-				result = Calculation.calcSecondFunction(sc, iterations, alpha, gamma);
+				func = new IntegralFunction(alpha, gamma);
+				result = func.calcFunction(sc, k, n);
+				//result = Calculation.calcSecondFunction(sc, k, n, alpha, gamma);
 				break;
 			case 3: 
-				result = Calculation.calcThirdFunction(sc, iterations, alpha, gamma);
+				func = new RecurrenceFunction(alpha, gamma);
+				result = func.calcFunction(sc, k, n);
+				//result = Calculation.calcThirdFunction(sc, k, n, alpha, gamma);
 				break;
 			default: 
 				result.getErrors().add("Ошибка: неверный тип функции");
