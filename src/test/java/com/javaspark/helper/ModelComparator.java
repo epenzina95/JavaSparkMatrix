@@ -8,6 +8,15 @@ import com.javaspark.function.CalculationResponse;
 public class ModelComparator {
 
 	
+	public static CalculationResponse generateResponse(String func, Double[][] arr, boolean status) {
+		CalculationResponse response = new CalculationResponse();
+		
+		response.setStatus(status);
+		response.getData().put(func, arr);
+		
+		return response;
+	}
+	
 	public static boolean compareMatrix(Double[][] a, Double[][] b) {
 		if (a.length == b.length) {
 			for (int i = 0; i < a.length; i++) {

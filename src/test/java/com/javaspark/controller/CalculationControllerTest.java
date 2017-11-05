@@ -39,13 +39,4 @@ public class CalculationControllerTest { // extends SharedJavaSparkContext {
 		when(func.calcFunction(jsc(), k, n)).thenReturn(response);
 		assertTrue(ModelComparator.compareResponse(response, func.calcFunction(jsc(), k, n)));
 	}*/
-	
-	private CalculationResponse generateResponse() {
-		CalculationResponse response = new CalculationResponse();
-		
-		response.setStatus(true);
-		response.getData().put("FirstFunctionRes", (new Double[3][3]).toString());
-		
-		return response;
-	}
 }

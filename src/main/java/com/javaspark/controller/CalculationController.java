@@ -61,17 +61,14 @@ public class CalculationController {
 			case 1: 
 				func = new AnalyticFunction(alpha, gamma);
 				result = func.calcFunction(sc, k, n);
-				//result = Calculation.calcFirstFunction(sc, k, n, alpha, gamma);
 				break;
 			case 2: 
 				func = new IntegralFunction(alpha, gamma);
 				result = func.calcFunction(sc, k, n);
-				//result = Calculation.calcSecondFunction(sc, k, n, alpha, gamma);
 				break;
 			case 3: 
 				func = new RecurrenceFunction(alpha, gamma);
 				result = func.calcFunction(sc, k, n);
-				//result = Calculation.calcThirdFunction(sc, k, n, alpha, gamma);
 				break;
 			default: 
 				result.getErrors().add("Ошибка: неверный тип функции");
