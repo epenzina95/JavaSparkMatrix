@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import org.apache.commons.math3.special.Gamma;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
@@ -11,6 +13,7 @@ import org.apache.spark.api.java.function.Function;
 
 public class AnalyticFunction extends JavaSparkFunction implements Serializable {
 	
+	@Inject
 	public AnalyticFunction(Double alpha, Double gamma) {
 		super(alpha, gamma);
 	}

@@ -54,10 +54,11 @@ public class IntegralFunction extends JavaSparkFunction implements Serializable 
 	}
 	
 	private Double calcSecondFunctionForZeroElement(double tau) {
+		// Simpson's method for integral approximation
 		return (B - A) / 6 * (f0(A, tau) + 4 * f0((A + B) / 2, tau) + f0(B, tau));
 	}
 	
 	private Double f0 (double x, double tau) {
-		return  Math.cos((this.getAlpha() + 1) * C * this.getGamma() * tau / (2 * Math.tan(x)));
+		return  Math.cos((this.getAlpha() + 1) * C * this.getGamma() * tau * Math.cos(x)/ (2 * Math.sin(x)));
 	}
 }

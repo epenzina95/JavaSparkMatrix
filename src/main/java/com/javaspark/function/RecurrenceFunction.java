@@ -31,10 +31,10 @@ public class RecurrenceFunction extends JavaSparkFunction implements Serializabl
 
 	@Override
 	public Double calcFunctionElement(double k, double tau) throws Exception {
-		if (k > 2) {
+		if (k > 1) {
 			return firstConst(k, tau) * calcFunctionElement(k - 1, tau) - 
 					secondConst(k, tau) * calcFunctionElement(k - 2, tau);
-		} else return 0.0;
+		} else return (k == 1) ? firstConst(k, tau) * calcFunctionElement(k - 1, tau) : 1.0;
 	}
 
 	

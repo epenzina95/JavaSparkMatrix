@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.api.java.function.Function;
@@ -14,11 +16,13 @@ public abstract class JavaSparkFunction implements Serializable {
 
 	public static final int C = 2;
 	
+	@Inject
 	private Double alpha;
+	@Inject
 	private Double gamma;
 	
 	
-	
+	@Inject
 	public JavaSparkFunction(Double alpha, Double gamma) {
 		this.alpha = alpha;
 		this.gamma = gamma;
