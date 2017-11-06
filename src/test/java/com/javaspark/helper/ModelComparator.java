@@ -17,7 +17,7 @@ public class ModelComparator {
 		return response;
 	}
 	
-	public static boolean compareMatrix(Double[][] a, Double[][] b) {
+	public static boolean compareMatrix(Object[][] a, Object[][] b) {
 		if (a.length == b.length) {
 			for (int i = 0; i < a.length; i++) {
 				if (a[i].length == b[i].length) {
@@ -48,12 +48,7 @@ public class ModelComparator {
 			if (a.size() == b.size()) {
 				for (Object key : a.keySet()) {
 					if (a.get(key) instanceof Double[][] && b.get(key) instanceof Double[][]) {
-						Double[][] tmpA = ((Double[][])a.get(key));
-						Double[][] tmpB = ((Double[][])b.get(key));
-						for (int i = 0; i < tmpA.length; i++) {
-							for (int j = 0; j < tmpA[i].length; j++)
-								if (tmpA[i][j] != tmpB[i][j]) return false;
-						}
+						return compareMatrix((Double[][])a.get(key), (Double[][])b.get(key));
 					} else {
 						if (a.get(key) instanceof String && b.get(key) instanceof String)
 							if (!a.get(key).equals(b.get(key))) return false;

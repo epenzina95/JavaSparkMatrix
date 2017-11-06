@@ -9,13 +9,21 @@ angular.module('sparkCalc').controller('CalcFunctionController', ['$scope', 'Cal
     self.alpha = null;
     self.gamma = null;
     self.isLoading = false;
+    self.isTestable = false;
     self.response={};
  
+    self.selectedTests = ['Транспонирование матрицы','Вычисление ранга матрицы'];
+    self.allTests = ['Транспонирование матрицы','Вычисление ранга матрицы','Еще тест'];
+    self.dropdownSettings = {
+    	scrollable: true,
+    	scrollableHeight: '200px'
+    };
+    
     self.submit = submit;
     self.reset = reset;
     
     function getFunctionResult() {
-    	CalcFunctionService.getFunctionResult(self.functionNum, self.k, self.n, self.alpha, self.gamma)
+    	CalcFunctionService.getFunctionResult(self.functionNum, self.k, self.n, self.alpha, self.gamma, self.isTestable, self.selectedTests)
     	.then(
     	function(d) {
             console.log('Function execution complete');
@@ -28,13 +36,13 @@ angular.module('sparkCalc').controller('CalcFunctionController', ['$scope', 'Cal
     	}
     	);
     }
-    
+
     function submit() {
         console.log('Start getting function result');
         
         if (self.gamma > 1 || self.gamma < 0) {
         	self.response.errors = [];
-        	self.response.errors.push('Неверное значение параметра: |&gamma;| <= 1');
+        	self.response.errors.push('Неверное значение параметра: |gamma| <= 1');
         	return;
         }
         if (self.n <= 0 || self.k <= 0) {
@@ -57,6 +65,7 @@ angular.module('sparkCalc').controller('CalcFunctionController', ['$scope', 'Cal
         self.alpha = null;
         self.gamma = null;
         self.isLoading = false;
+        self.isTestable = false;
         self.response = {};
     }
  

@@ -1,6 +1,8 @@
 package com.javaspark.controller;
 
 import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaSparkContext;
@@ -10,17 +12,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.javaspark.function.AnalyticFunction;
-import com.javaspark.function.Calculation;
-import com.javaspark.function.CalculationResponse;
-import com.javaspark.function.IntegralFunction;
-import com.javaspark.function.JavaSparkFunction;
-import com.javaspark.function.RecurrenceFunction;
+import com.javaspark.function.*;
+
+
 
 @RestController
 public class CalculationController {
 
 	private static final String CALCULATE_FUNCTION = "/calc";
+	private static final String LOAD_TESTING = "/test";
+	
 	private static final String APP_NAME = "JavaSparkCalc";
 	private static final String MASTER = "local";
 	private static final String HADOOP_PROPERTY = "hadoop.home.dir";
@@ -78,6 +79,32 @@ public class CalculationController {
 			result.getErrors().add(e.getMessage());
 			e.printStackTrace();
 		}
+		
+		return result;
+	}
+	
+	
+	@RequestMapping(value = LOAD_TESTING, method = RequestMethod.POST)
+	public @ResponseBody Object doTesting(
+			@RequestParam(value = "selectedTest", required = true) String selectedTest) {
+		
+		CalculationResponse result = new CalculationResponse();
+		
+		if(selectedTest != null) {
+			try { 
+				
+				// TO DO: add testing logic
+
+				// tst response. это для артов, не удаляйте, плиз, пока
+				Map<Object, Object> chart = new HashMap<Object, Object>();
+				for (int i = 0; i < 10; i++)
+					chart.put(i, Math.random() * 10);
+				result.getData().put(selectedTest, chart);
+			} catch(Exception e) {
+				result.getErrors().add(e.getMessage());
+				e.printStackTrace();
+			}
+		}	
 		
 		return result;
 	}

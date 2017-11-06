@@ -18,7 +18,7 @@
 	<div class="container">
 
 		<div class="row starter-template">
-			<div class="col-md-12" style="text-align: center;">
+			<div class="col-md-12">
 				<h1>Вычисление функций с помощью фреймворка Apache Spark</h1>
 			</div>
 		</div>
@@ -43,9 +43,10 @@
 					</ul>
 				</div>
 				<div ng-if="ctrl.response.data" class="alert alert-success">
-					<ul ng-repeat="(key, value) in ctrl.response.data">
+					<span>Расчет матрицы выполнен успешно</span>
+					<!-- <ul ng-repeat="(key, value) in ctrl.response.data">
 						<li>{{key}}: {{value}}</li>
-					</ul>
+					</ul> -->
 				</div>
 				<form ng-submit="ctrl.submit()" name="myForm" class="form-horizontal">
 					<div class="row">
@@ -99,12 +100,23 @@
 							</div>
 						</div>
 					</div>
-		 
 					<div class="row">
 						<div class="form-group col-md-12">
 		                	<label class="col-md-2 control-lable" for="gamma">&gamma;</label>
 		                    <div class="col-md-8">
 		                    	<input type="number" step="0.00001" ng-model="ctrl.gamma" id="gamma" class="form-control input-sm"/>
+							</div>
+						</div>
+					</div>
+					<div class="row" style="margin-bottom:15px;">
+						<div class="form-group col-md-12">
+							<div class="col-md-2 checkbox">
+							    <label>
+							      <input id="isTestable" name="isTestable" ng-model="ctrl.isTestable" type="checkbox"> Провести тестирование
+							    </label>
+							</div> 
+		                    <div class="col-md-8">
+		                    	<input type="text" step="0.00001" placeholder="Список тестов" ng-disabled="!ctrl.isTestable" ng-model="ctrl.testList" id="testList" class="form-control input-sm"/>
 							</div>
 						</div>
 					</div>
@@ -120,6 +132,8 @@
 
 	</div>
 	<!-- /.container -->
+	
+	
 
 	<script type="text/javascript" src="/webjars/jquery/3.2.1/jquery.min.js"/>
 	<script type="text/javascript" src="webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -169,6 +183,12 @@
           <md-content class="md-padding">
             <h1 class="md-display-2">Графики</h1>
             <p>В приложении выводятся графики нагрузки. Они должны быть красивые, а может и не очень красивые. Кто их знает?</p>
+          </md-content>
+        </md-tab>
+        <md-tab label="Тестирование">
+          <md-content class="md-padding">
+            <h1 class="md-display-2">Тестирование</h1>
+            <p>В приложении проводится нагрузочное тестирование. тарам парарам.</p>
           </md-content>
         </md-tab>
         <md-tab></md-tab>
