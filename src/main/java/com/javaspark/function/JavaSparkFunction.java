@@ -41,7 +41,6 @@ public abstract class JavaSparkFunction implements Serializable {
 		List<List<Double>> res = new ArrayList<>();
 		for (int s = 0; s < k; s++) {
 			res.add(calcFunctionCol(parallelRows, s));
-			System.out.println();
 		}
 		return res;
 	}
@@ -51,7 +50,6 @@ public abstract class JavaSparkFunction implements Serializable {
 		List<List<Double>> res = new ArrayList<>();
 		for (int tau = 1; tau <= n; tau++) {
 			res.add(calcFunctionRow(parallelCols, tau));
-			System.out.println();
 		}
 		return res;
 	}
@@ -61,7 +59,6 @@ public abstract class JavaSparkFunction implements Serializable {
 			@Override
 			public Double call(Double s) throws Exception {
 				Double res = calcFunctionElement(s, tau);
-				System.out.print(res.doubleValue() + "\t");
 				return res;
 			}		
 		}).top((int) parallelCols.count());
@@ -72,7 +69,6 @@ public abstract class JavaSparkFunction implements Serializable {
 			@Override
 			public Double call(Double s) throws Exception {
 				Double res = calcFunctionElement(k, s);
-				System.out.print(res.doubleValue() + "\t");
 				return res;
 			}		
 		}).top((int) parallelRows.count());

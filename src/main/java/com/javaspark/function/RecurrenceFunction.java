@@ -19,7 +19,7 @@ public class RecurrenceFunction extends JavaSparkFunction implements Serializabl
 		CalculationResponse response = new CalculationResponse();
 
 		try {
-			response.getData().put("ThirdFunctionRes", 
+			response.getData().put("resMatr", 
 					((n > k) ? this.toArray(rowParallel(sc, k, n), false) : this.toArray(colParallel(sc, k, n), true))); // вообще тут должны бы быть точки для графика.
 		} catch(Exception e) {
 			response.getErrors().add(e.getMessage());

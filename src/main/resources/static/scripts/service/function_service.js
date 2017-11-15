@@ -16,13 +16,15 @@ angular.module('sparkCalc').factory('CalcFunctionService', ['$http', '$q', funct
         		(alpha ? ("&alpha=" + alpha) : "") + (gamma ? "&gamma="+ gamma : "")))
         
         var deferred = $q.defer();
-        if (isTestable)
+        /*if (isTestable)
         	for (var i=0; i < selectedTests.length; i++) {
         		request.push(
         				$http.post(REST_SERVICE_URI + '/test' + "?selectedTest=" + selectedTests[i])
         		);
-        	}
-        $q.all(request).then(function(response) {
+        	}*/
+    	$http.get(REST_SERVICE_URI + "/calc" + "?functionNum=" + functionNum + "&k=" + k + "&n=" + n + 
+        		(alpha ? ("&alpha=" + alpha) : "") + (gamma ? "&gamma="+ gamma : "")).
+        then(function(response) {
         	deferred.resolve(response.data);
         })
         return deferred.promise;

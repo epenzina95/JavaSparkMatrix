@@ -42,11 +42,11 @@
 						<li ng-bind="e"></li>
 					</ul>
 				</div>
-				<div ng-if="ctrl.response.data" class="alert alert-success">
+				<div ng-if="ctrl.response.data && !ctrl.response.errors.length" class="alert alert-success">
 					<span>Расчет матрицы выполнен успешно</span>
-					<!-- <ul ng-repeat="(key, value) in ctrl.response.data">
+					<ul ng-repeat="(key, value) in ctrl.response.data">
 						<li>{{key}}: {{value}}</li>
-					</ul> -->
+					</ul>
 				</div>
 				<form ng-submit="ctrl.submit()" name="myForm" class="form-horizontal">
 					<div class="row">
@@ -108,7 +108,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="row" style="margin-bottom:15px;">
+					<!-- <div class="row" style="margin-bottom:15px;">
 						<div class="form-group col-md-12">
 							<div class="col-md-2 checkbox">
 							    <label>
@@ -116,10 +116,12 @@
 							    </label>
 							</div> 
 		                    <div class="col-md-8">
-		                    	<input type="text" step="0.00001" placeholder="Список тестов" ng-disabled="!ctrl.isTestable" ng-model="ctrl.testList" id="testList" class="form-control input-sm"/>
+		                    	<select class="form-control sparkTestSelect" multiple id="selectedTests" name="selectedTests" ng-model="selectedTests" type="form-control" placeholder="Список тестов" ng-disabled="!ctrl.isTestable">
+		                    		<option ng-repeat="test in ctrl.allTests">{{test}}</option>
+		                    	</select>
 							</div>
 						</div>
-					</div>
+					</div> -->
 					<div class="row">
 						<div class="form-actions floatRight">
 							<input type="submit"  value="Вычислить" class="btn btn-primary btn-sm" ng-disabled="myForm.$invalid">
@@ -129,7 +131,6 @@
 				</form>
 			</div>
 		</div>
-
 	</div>
 	<!-- /.container -->
 	
@@ -164,31 +165,43 @@
         <md-tab label="О программе">
           <md-content class="md-padding">
             <h1 class="md-display-2">О программе</h1>
-            <p>Дизайн поправить надо, конечно.</p>
-            <p>Кто-нибудь может выпилить этот темплейт из index.jsp? У меня чет ничего не выходит. Я днище.</p>
-            <p>Еще по какой-то причине непонятной получается так, что при загрузке диалогового окна на нем отображается только две вкладки, а если потом открыть/закрыть консольку, появляется и третья. Кто-нить может посмотреть, почему так происходит?</p>
-            <p>А вообще здесь можно было бы вывести задание, например, наверное.</p>
-            <p>Типа, в приложении производится вычисление функций Якоби с использованием фреймворка Apache Spark для распараллеливания процесса обработки данных.</p>
-            <p>Ну и типа работу выполнили:</p>
+            <p>В приложении проводится вычисление элементов матрицы с использованием одного из видов функций Якоби: аналитической, интегральной и рекурентной, - а также проводится нагрузочной тестирование.</p>
+            <p>В качестве результата пользователю выводится либо сообщение об успешном вычислении элементов матрицы и время, потраченное на расчеты, либо сообщение о возникших в процессе вычислений ошибках.</p>
+            <p>Вычисления проводятся параллельно-последовательно с использованием фреймворка Apache Spark v2.11. Серверная часть собирается при помощи Spring Boot, на клиентской части используется фреймворк Angular JS.</p>
+            <p>Работу выполнили студенты группы 6121:</p>
+			<ul>
+				<li>Возжаева Анастасия,</li>
+				<li>Пензина Евгения,</li>
+				<li>Худобердина Екатерина,</li>
+				<li>Яшкова Анастасия.</li>
+			</ul>
           </md-content>
         </md-tab>
         <md-tab label="Данные">
           <md-content class="md-padding">
             <h1 class="md-display-2">Данные</h1>
-            <p>В приложении считается то-то, то-то. Вот у нас тут три типа функций. Еще всякие параметры. Их ввести надо, и все будет хорошо.</p>
-            <p>Вот тут итерации - сомнительная переменная, но в формуле вроде как присутствует; альфа, гамма - это вообще просто параметры; Еще есть c и тау, но c всегда равно двум, а тау вроде как считать тоже надо.</p>
-          </md-content>
-        </md-tab>
-        <md-tab label="Графики">
-          <md-content class="md-padding">
-            <h1 class="md-display-2">Графики</h1>
-            <p>В приложении выводятся графики нагрузки. Они должны быть красивые, а может и не очень красивые. Кто их знает?</p>
+            <p>Перед началом вычислений необходимо ввести все требуемые данные:</p>
+            <ul>
+				<li>Тип функции, используемой для расчета элемента матрицы (аналитическая, интегральная, рекурентная). В приложении проводится анализ размерности матрицы и распараллеливание по большей стороне;</li>
+				<li>Размерность матрицы: количество строк и столбцов результирующей матрицы. Эти числа должны быть >= 1;</li>
+				<li>Параметры &alpha; и &gamma;, причем |&gamma;| <= 1.</li>
+			</ul>
           </md-content>
         </md-tab>
         <md-tab label="Тестирование">
           <md-content class="md-padding">
             <h1 class="md-display-2">Тестирование</h1>
-            <p>В приложении проводится нагрузочное тестирование. тарам парарам.</p>
+            <p>В приложении проводится следующие тесты: </p>
+			<ul>
+				<li>Модульное тестирование;</li>
+				<li>Нагрузочное тестирование:</li>
+				<ul>
+					<li>Нахождение обратной матрицы: A<sup>-1</sup>;</li>
+					<li>Нахождение транспонированной матрицы: A<sup>T</sup>;</li>
+					<li>Нахождение произведения: <math>A * A<sup>T</sup></math>.</li>
+				</ul>
+			</ul>
+			<p>Модульное тестирование проводится с использованием jUnit4. Нагрузочное тестирование проводится с использованием фреймворка Jama.</p>
           </md-content>
         </md-tab>
         <md-tab></md-tab>

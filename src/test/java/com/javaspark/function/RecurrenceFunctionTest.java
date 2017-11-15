@@ -55,7 +55,7 @@ public class RecurrenceFunctionTest extends  SharedJavaSparkContext implements S
 
 	@Test
 	public void calcFunctionTest() {
-		CalculationResponse res = ModelComparator.generateResponse("ThirdFunctionRes", resArr, true);
+		CalculationResponse res = ModelComparator.generateResponse("resMatr", resArr, true);
 		int k = 2, n = 3;
 		when(func.calcFunction(jsc(), k, n)).thenReturn(res);
 		assertTrue(ModelComparator.compareResponse(res, func.calcFunction(jsc(),k, n)));

@@ -44,7 +44,7 @@ public class AnalyticFunctionTest  extends  SharedJavaSparkContext implements Se
 	
 	@Test
 	public void calcFunctionTest() {
-		CalculationResponse res = ModelComparator.generateResponse("FirstFunctionRes", resArr, true);
+		CalculationResponse res = ModelComparator.generateResponse("resMatr", resArr, true);
 		int k = 2, n = 3;
 		when(func.calcFunction(jsc(), k, n)).thenReturn(res);
 		assertTrue(ModelComparator.compareResponse(res, func.calcFunction(jsc(),k, n)));

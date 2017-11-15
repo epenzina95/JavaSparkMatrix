@@ -45,7 +45,7 @@ public class IntegralFunctionTest extends  SharedJavaSparkContext implements Ser
 	
 	@Test
 	public void calcFunctionTest() {
-		CalculationResponse res = ModelComparator.generateResponse("SecondFunctionRes", tmpNaN(), true);
+		CalculationResponse res = ModelComparator.generateResponse("resMatr", tmpNaN(), true);
 		int k = 2, n = 3;
 		when(func.calcFunction(jsc(), k, n)).thenReturn(res);
 		assertTrue(ModelComparator.compareResponse(res, func.calcFunction(jsc(),k, n)));

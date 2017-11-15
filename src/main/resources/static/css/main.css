@@ -34,6 +34,10 @@ html, body {
 	margin-bottom: auto;
 }
 
+.sparkTestSelect {
+	minwidth: 20%;
+}
+
 /* DIALOG WINDOW */
 .dialogdemoBasicUsage #popupContainer {
   position: relative; }

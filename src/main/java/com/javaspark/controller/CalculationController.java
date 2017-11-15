@@ -20,7 +20,6 @@ import com.javaspark.function.*;
 public class CalculationController {
 
 	private static final String CALCULATE_FUNCTION = "/calc";
-	private static final String LOAD_TESTING = "/test";
 	
 	private static final String APP_NAME = "JavaSparkCalc";
 	private static final String MASTER = "local";
@@ -58,6 +57,8 @@ public class CalculationController {
 				sc = new JavaSparkContext(conf);
 			}
 			
+			long currTime = System.currentTimeMillis();
+			
 			switch(functionNum) {
 			case 1: 
 				func = new AnalyticFunction(alpha, gamma);
@@ -75,36 +76,15 @@ public class CalculationController {
 				result.getErrors().add("Ошибка: неверный тип функции");
 			break;
 			}
+			
+			result.getData().put("Вычисление матрицы", LoadingTest.timeFormat(System.currentTimeMillis() - currTime));
+			LoadingTest.doTests(result, (Double[][])result.getData().get("resMatr"));
+			result.getData().remove("resMatr");
+			
 		} catch(Exception e) {
 			result.getErrors().add(e.getMessage());
 			e.printStackTrace();
 		}
-		
-		return result;
-	}
-	
-	
-	@RequestMapping(value = LOAD_TESTING, method = RequestMethod.POST)
-	public @ResponseBody Object doTesting(
-			@RequestParam(value = "selectedTest", required = true) String selectedTest) {
-		
-		CalculationResponse result = new CalculationResponse();
-		
-		if(selectedTest != null) {
-			try { 
-				
-				// TO DO: add testing logic
-
-				// tst response. это для артов, не удаляйте, плиз, пока
-				Map<Object, Object> chart = new HashMap<Object, Object>();
-				for (int i = 0; i < 10; i++)
-					chart.put(i, Math.random() * 10);
-				result.getData().put(selectedTest, chart);
-			} catch(Exception e) {
-				result.getErrors().add(e.getMessage());
-				e.printStackTrace();
-			}
-		}	
 		
 		return result;
 	}

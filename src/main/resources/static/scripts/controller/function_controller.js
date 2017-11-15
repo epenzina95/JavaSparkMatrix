@@ -26,8 +26,7 @@ angular.module('sparkCalc').controller('CalcFunctionController', ['$scope', 'Cal
     	CalcFunctionService.getFunctionResult(self.functionNum, self.k, self.n, self.alpha, self.gamma, self.isTestable, self.selectedTests)
     	.then(
     	function(d) {
-            console.log('Function execution complete');
-    		self.response = d;
+            self.response = d;
     		self.isLoading = false;
     		if (self.response.errors != null) {
     			for (var i = 0; i < self.response.errors.length; i++)

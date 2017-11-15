@@ -24,7 +24,7 @@ public class AnalyticFunction extends JavaSparkFunction implements Serializable 
 		CalculationResponse response = new CalculationResponse();
 		
 		try {
-			response.getData().put("FirstFunctionRes", 
+			response.getData().put("resMatr", 
 					((n > k) ? this.toArray(rowParallel(sc, k, n), false) : this.toArray(colParallel(sc, k, n), true))); // вообще тут должны бы быть точки для графика.
 			
 		} catch(Exception e) {
