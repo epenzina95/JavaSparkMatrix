@@ -14,6 +14,7 @@ import static org.mockito.Mockito.*;
 
 import com.holdenkarau.spark.testing.SharedJavaSparkContext;
 import com.javaspark.helper.ModelComparator;
+import com.javaspark.model.CalculationResponse;
 
 public class AnalyticFunctionTest  extends  SharedJavaSparkContext implements Serializable {
 

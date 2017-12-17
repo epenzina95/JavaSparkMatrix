@@ -6,9 +6,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.holdenkarau.spark.testing.SharedJavaSparkContext;*/
 import com.javaspark.function.AnalyticFunction;
-import com.javaspark.function.CalculationResponse;
 import com.javaspark.function.JavaSparkFunction;
 import com.javaspark.helper.ModelComparator;
+import com.javaspark.model.CalculationResponse;
 
 /*import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;*/

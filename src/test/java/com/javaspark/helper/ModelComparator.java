@@ -3,7 +3,7 @@ package com.javaspark.helper;
 import java.util.List;
 import java.util.Map;
 
-import com.javaspark.function.CalculationResponse;
+import com.javaspark.model.CalculationResponse;
 
 public class ModelComparator {
 

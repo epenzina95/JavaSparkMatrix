@@ -1,4 +1,4 @@
-package com.javaspark.function;
+package com.javaspark.model;
 
 import java.util.*;
 

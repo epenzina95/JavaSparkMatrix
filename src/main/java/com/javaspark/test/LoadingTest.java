@@ -1,7 +1,10 @@
-package com.javaspark.function;
+package com.javaspark.test;
 
 import java.util.*;
 import java.util.concurrent.TimeUnit;
+
+import com.javaspark.model.CalculationResponse;
+import com.javaspark.util.JavaSparkHelper;
 
 import Jama.Matrix;
 
@@ -14,9 +17,9 @@ public class LoadingTest {
 		
 		double[][] tmp = convertDouble(matrix);
 		
-		response.getData().put("Тест нахождения обратной матрицы", timeFormat(inverseMatrixTest(tmp)));
-		response.getData().put("Тест транспонирования матрицы", timeFormat(transposedMatrixTest(tmp)));
-		response.getData().put("Тест умножения матрицы на транспонированную", timeFormat(matrixMultiplicationTest(tmp)));
+		response.getData().put(JavaSparkHelper.INVERSE_TEST_MSG, JavaSparkHelper.timeFormat(inverseMatrixTest(tmp)));
+		response.getData().put(JavaSparkHelper.TRANSPARENCY_TEST_MSG, JavaSparkHelper.timeFormat(transposedMatrixTest(tmp)));
+		response.getData().put(JavaSparkHelper.MULTIPLY_TEST_MSG, JavaSparkHelper.timeFormat(matrixMultiplicationTest(tmp)));
 		
 	}
 	
@@ -68,13 +71,5 @@ public class LoadingTest {
 			for (int j = 0; j < matrix[i].length; j++)
 				res[i][j] = matrix[i][j];
 		return res;
-	}
-	
-	public static String timeFormat(long millis) {
-		return String.format("%02d мин, %02d сек, %02d мсек", 
-			    TimeUnit.MILLISECONDS.toMinutes(millis),
-			    TimeUnit.MILLISECONDS.toSeconds(millis) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millis)),
-			    millis - TimeUnit.SECONDS.toMillis(TimeUnit.MILLISECONDS.toSeconds(millis))
-			);
 	}
 }

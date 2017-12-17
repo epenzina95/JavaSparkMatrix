@@ -41,7 +41,7 @@ angular.module('sparkCalc').controller('CalcFunctionController', ['$scope', 'Cal
         
         if (self.gamma > 1 || self.gamma < 0) {
         	self.response.errors = [];
-        	self.response.errors.push('Неверное значение параметра: |gamma| <= 1');
+        	self.response.errors.push('Неверное значение параметра: gamma <= 1');
         	return;
         }
         if (self.n <= 0 || self.k <= 0) {

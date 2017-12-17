@@ -8,6 +8,8 @@ import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.api.java.function.Function;
 
+import com.javaspark.model.CalculationResponse;
+
 public class RecurrenceFunction extends JavaSparkFunction implements Serializable {
 
 	public RecurrenceFunction(Double alpha, Double gamma) {

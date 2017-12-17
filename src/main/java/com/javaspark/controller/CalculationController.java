@@ -13,6 +13,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.javaspark.function.*;
+import com.javaspark.model.CalculationResponse;
+import com.javaspark.test.LoadingTest;
+import com.javaspark.test.SequentialCalculation;
+import com.javaspark.util.JavaSparkHelper;
 
 
 
@@ -63,21 +67,26 @@ public class CalculationController {
 			case 1: 
 				func = new AnalyticFunction(alpha, gamma);
 				result = func.calcFunction(sc, k, n);
+				result.getData().put(JavaSparkHelper.PARALLEL_CALC_MSG, JavaSparkHelper.timeFormat(System.currentTimeMillis() - currTime));
+				result.getData().putAll(SequentialCalculation.calc(func, k, n));
 				break;
 			case 2: 
 				func = new IntegralFunction(alpha, gamma);
 				result = func.calcFunction(sc, k, n);
+				result.getData().put(JavaSparkHelper.PARALLEL_CALC_MSG, JavaSparkHelper.timeFormat(System.currentTimeMillis() - currTime));
+				result.getData().putAll(SequentialCalculation.calc(func, k, n));
 				break;
 			case 3: 
 				func = new RecurrenceFunction(alpha, gamma);
 				result = func.calcFunction(sc, k, n);
+				result.getData().put(JavaSparkHelper.PARALLEL_CALC_MSG, JavaSparkHelper.timeFormat(System.currentTimeMillis() - currTime));
+				result.getData().putAll(SequentialCalculation.calc(func, k, n));
 				break;
 			default: 
 				result.getErrors().add("Ошибка: неверный тип функции");
 			break;
 			}
 			
-			result.getData().put("Вычисление матрицы", LoadingTest.timeFormat(System.currentTimeMillis() - currTime));
 			LoadingTest.doTests(result, (Double[][])result.getData().get("resMatr"));
 			result.getData().remove("resMatr");
 			

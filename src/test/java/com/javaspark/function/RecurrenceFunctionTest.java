@@ -13,6 +13,7 @@ import org.junit.Test;
 
 import com.holdenkarau.spark.testing.SharedJavaSparkContext;
 import com.javaspark.helper.ModelComparator;
+import com.javaspark.model.CalculationResponse;
 
 public class RecurrenceFunctionTest extends  SharedJavaSparkContext implements Serializable {
 

@@ -9,6 +9,8 @@ import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.api.java.function.Function;
 
+import com.javaspark.model.CalculationResponse;
+
 public class IntegralFunction extends JavaSparkFunction implements Serializable {
 
 	public static final double A = 0;
@@ -24,7 +26,7 @@ public class IntegralFunction extends JavaSparkFunction implements Serializable 
 		
 		try {
 			response.getData().put("resMatr", 
-					((n > k) ? this.toArray(rowParallel(sc, k, n), false) : this.toArray(colParallel(sc, k, n), true))); // вообще тут должны бы быть точки для графика.
+					((n > k) ? this.toArray(rowParallel(sc, k, n), false) : this.toArray(colParallel(sc, k, n), true))); 
 		} catch(Exception e) {
 			response.getErrors().add(e.getMessage());
 			e.printStackTrace();
